@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/kosoczky/snake/issues"
   },
-  "homepage": "https://github.com/kosoczky/snake#readme"
+  "homepage": "https://github.com/kosoczky/snake#readme",
+  "dependencies": {
+    "table": "^4.0.3"
+  }
 }
