@@ -1,0 +1,19 @@
+{
+  "name": "snake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "snake.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kosoczky/snake.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kosoczky/snake/issues"
+  },
+  "homepage": "https://github.com/kosoczky/snake#readme"
+}
