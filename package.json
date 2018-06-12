@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/kosoczky/snake#readme",
   "dependencies": {
+    "keypress": "^0.2.1",
     "table": "^4.0.3"
   }
 }
