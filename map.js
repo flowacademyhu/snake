@@ -1,3 +1,4 @@
+//MAP
 const { table } = require('table');
 
 let size = 15;
