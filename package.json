@@ -18,6 +18,8 @@
   "homepage": "https://github.com/kosoczky/snake#readme",
   "dependencies": {
     "keypress": "^0.2.1",
-    "table": "^4.0.3"
+    "readline-sync": "^1.4.9",
+    "table": "^4.0.3",
+    "terminal-clear": "^0.1.0"
   }
 }

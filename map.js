@@ -14,6 +14,6 @@ function generateMap() {
   console.log(map);
 }
 
-generateMap();
+
 
 module.exports = generateMap;
