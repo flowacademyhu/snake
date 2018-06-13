@@ -14,6 +14,7 @@ for (let i = 0; i < size; i++) {
     map[i][j] = '';
   }
 }
+
 let i = 3;
 let j = 3;
 
@@ -26,7 +27,7 @@ console.log(map);
 
 while (true) {
   clear();
-  console.log(map);
+    console.log(map);
   let basicQuestions = ['Fel', 'Le', 'Jobbra', 'Balra'];
   let index = readlineSync.keyInSelect(basicQuestions, 'Mit szeretnel csinalni?');
   switch (index) {
