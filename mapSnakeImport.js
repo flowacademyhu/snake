@@ -1,8 +1,12 @@
 const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
+
+// map behívás
 const basicMap = require('./map');
 let currentMap = basicMap;
+
+// MOVE
 
 let i = 3;
 let j = 3;
@@ -14,7 +18,7 @@ let currentStateX = j;
 currentMap[currentStateY][currentStateX] = 'x';
 
 // ez határozza meg a mozgast
-while (true) {
+while (true) { /* végtelenített while ciklus */
   clear();
   console.log('x= ' + currentStateX, 'y= ' + currentStateY);
   let modifiedMap = table(currentMap);
@@ -22,6 +26,8 @@ while (true) {
 
   let basicQuestions = ['Fel', 'Le', 'Jobbra', 'Balra'];
   let index = readlineSync.keyInSelect(basicQuestions, 'Mit szeretnel csinalni?');
+
+  // lépések
   switch (index) {
     case 0:
       currentStateY--;
@@ -45,3 +51,5 @@ while (true) {
       break;
   }
 }
+
+module.exports = modifiedmap;
