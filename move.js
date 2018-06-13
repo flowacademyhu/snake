@@ -2,8 +2,16 @@
 const map = require('./map');
 map();
 */
+<<<<<<< HEAD
+const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
+const snakeMap = require('./map');
+snakeMap.output
+=======
+const readlineSync = require('readline-sync');
+const clear = require('terminal-clear');
+>>>>>>> development
 
 let map = [];
 let size = 15;
@@ -14,6 +22,10 @@ for (let i = 0; i < size; i++) {
     map[i][j] = '';
   }
 }
+<<<<<<< HEAD
+
+=======
+>>>>>>> development
 let i = 3;
 let j = 3;
 
@@ -24,9 +36,16 @@ map[i][j] = 'x';
 
 console.log(map);
 
+<<<<<<< HEAD
+// ez határozza meg a mozgast
+while (true) {
+  clear();
+    console.log(map);
+=======
 while (true) {
   clear();
   console.log(map);
+>>>>>>> development
   let basicQuestions = ['Fel', 'Le', 'Jobbra', 'Balra'];
   let index = readlineSync.keyInSelect(basicQuestions, 'Mit szeretnel csinalni?');
   switch (index) {
