@@ -18,9 +18,6 @@ let map = [
 ];
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> ab1de3237ce5f8165aa87ebcb39ac5cd4207ba82
 output = table(map);
 console.log(output);
