@@ -1,8 +1,8 @@
-
 const { table } = require('table');
+const { getBorderCharacters } = require('table');
 let output;
 
-let map = [
+let mapSnake = [
   [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
   [' ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   [' ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
@@ -16,8 +16,14 @@ let map = [
   [' ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''],
   [' ', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']
 ];
+/*
+config = {
+  border: getBorderCharacters(`void`)
+};
+*/
 
-
-
-output = table(map);
+output = table(mapSnake, /*config*/);
 console.log(output);
+
+//module.exports = output;
+module.exports = mapSnake;
