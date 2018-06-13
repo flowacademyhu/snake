@@ -23,33 +23,34 @@ while (true) { /* végtelenített while ciklus */
   console.log('x= ' + currentStateX, 'y= ' + currentStateY);
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
-
-  let basicQuestions = ['Fel', 'Le', 'Jobbra', 'Balra'];
-  let index = readlineSync.keyInSelect(basicQuestions, 'Mit szeretnel csinalni?');
+  let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
   // lépések
   switch (index) {
-    case 0:
+    case 'w':
       currentStateY--;
       currentMap[currentStateY][currentStateX] = 'x';
       currentMap[currentStateY + 1][currentStateX] = '';
       break;
-    case 3:
+    case 'a':
       currentStateX--;
       currentMap[currentStateY][currentStateX] = 'x';
       currentMap[currentStateY][currentStateX + 1] = '';
       break;
-    case 1:
+    case 's':
       currentStateY++;
       currentMap[currentStateY][currentStateX] = 'x';
       currentMap[currentStateY - 1][currentStateX] = '';
       break;
-    case 2:
+    case 'd':
       currentStateX++;
       currentMap[currentStateY][currentStateX] = 'x';
       currentMap[currentStateY][currentStateX - 1] = '';
       break;
   }
+  if (index === 'q') {
+    break;
+  }
 }
 
-module.exports = modifiedmap;
+module.exports = modifiedMap;
