@@ -2,8 +2,11 @@
 const map = require('./map');
 map();
 */
+const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
+const snakeMap = require('./map');
+snakeMap.output
 
 let map = [];
 let size = 15;
@@ -25,6 +28,7 @@ map[i][j] = 'x';
 
 console.log(map);
 
+// ez határozza meg a mozgast
 while (true) {
   clear();
     console.log(map);
