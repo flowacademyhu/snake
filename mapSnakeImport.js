@@ -1,15 +1,17 @@
 const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
+const snake = require('./snakeArray')
 
 // map behívás
 const basicMap = require('./map');
-let currentMap = basicMap;
+
 
 // MOVE
 
 let i = 3;
 let j = 3;
+let currentMap = basicMap;
 
 // ezzel a két sorral bemented hogy hol van a snake feje, és behelyezem a térképre
 let currentStateY = i;
