@@ -1,12 +1,31 @@
-const { table } = require('table');
-const readlineSync = require('readline-sync');
-const clear = require('terminal-clear');
+let defaultPosition = [
+    {x: 5, y: 5,},
+    {x: 4, y: 5,},
+    {x: 3, y: 5,}
+]
 
-// map behívás
-const basicMap = require('./map');
-let currentMap = basicMap;
-// Move
-const modifiedMap = require('./mapSnakeImport.js');
+const up = (position) =>{
 
-console.log(modifiedMap);
+}
 
+const down = (position) =>{
+  
+}
+
+const left = (position) =>{
+  
+}
+
+const right = (position) =>{
+  
+}
+
+
+
+module.exports = {
+  defaultPosition: defaultPosition,
+  up: up,
+  down: down,
+  left: left,
+  right: right
+};
