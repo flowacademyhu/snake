@@ -1,33 +1,35 @@
 const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
+const snake = require('./snake');
+const defaultPosition = snake.defaultPosition;
 
 // map behívás
 const basicMap = require('./map');
-let currentMap = basicMap;
+
 
 // MOVE
 
-let i = 3;
-let j = 3;
-
-// ezzel a két sorral bemented hogy hol van a snake feje, és behelyezem a térképre
-let currentStateY = i;
-let currentStateX = j;
-
-currentMap[currentStateY][currentStateX] = 'x';
+let currentMap = basicMap;
 
 // ez határozza meg a mozgast
 while (true) { /* végtelenített while ciklus */
   clear();
-  console.log('x= ' + currentStateX, 'y= ' + currentStateY);
+  for (let positionIndex in position) {
+    let coordinate = position[positionIndex];
+    currentMap[coordinate.y][coordinate.x] = 'X';
+  }
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
-  let index = readlineSync.keyIn('', { limit: 'wasdq' });
+    let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
+
+
+  
   // lépések
   switch (index) {
     case 'w':
+      snake.up(position)
       currentStateY--;
       currentMap[currentStateY][currentStateX] = 'x';
       currentMap[currentStateY + 1][currentStateX] = '';
