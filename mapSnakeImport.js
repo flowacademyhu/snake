@@ -2,8 +2,8 @@ const { table } = require('table');
 const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
 const snake = require('./snake');
-const defaultPosition = snake.defaultPosition;
-
+const position = snake.defaultPosition;
+const generateFood = require('./generateFood');
 // map behívás
 const basicMap = require('./map');
 
@@ -11,7 +11,8 @@ const basicMap = require('./map');
 // MOVE
 
 let currentMap = basicMap;
-
+//1. alma generalas
+generateFood(currentMap);
 // ez határozza meg a mozgast
 while (true) { /* végtelenített while ciklus */
   clear();
@@ -29,25 +30,16 @@ while (true) { /* végtelenített while ciklus */
   // lépések
   switch (index) {
     case 'w':
-      snake.up(position)
-      currentStateY--;
-      currentMap[currentStateY][currentStateX] = 'x';
-      currentMap[currentStateY + 1][currentStateX] = '';
+      snake.up(position);
       break;
     case 'a':
-      currentStateX--;
-      currentMap[currentStateY][currentStateX] = 'x';
-      currentMap[currentStateY][currentStateX + 1] = '';
+    snake.left(position);
       break;
     case 's':
-      currentStateY++;
-      currentMap[currentStateY][currentStateX] = 'x';
-      currentMap[currentStateY - 1][currentStateX] = '';
+    snake.down(position);
       break;
     case 'd':
-      currentStateX++;
-      currentMap[currentStateY][currentStateX] = 'x';
-      currentMap[currentStateY][currentStateX - 1] = '';
+    snake.right(position);
       break;
   }
   if (index === 'q') {
