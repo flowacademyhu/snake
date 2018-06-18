@@ -36,6 +36,7 @@ while (true) { /* végtelenített while ciklus */
     }
     else {
       console.log('Game over');
+      break;
     }
   }
 
@@ -43,6 +44,7 @@ while (true) { /* végtelenített while ciklus */
   console.log(modifiedMap);
   let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
+  module.exports = modifiedMap;
   // lépések
   switch (index) {
     case 'w':
@@ -58,10 +60,8 @@ while (true) { /* végtelenített while ciklus */
       snake.right(position);
       break;
   }
-  if (index === 'q') {
+  if (index === 'q' || position[0].y < 0 || position[0].x < 0 || position[0].y > 15 || position[0].x > 15 ) {
+    console.log('Game Over!')
     break;
   }
-
 }
-
-module.exports = modifiedMap;
