@@ -3,7 +3,8 @@ const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
 const snake = require('./snake');
 let position = snake.defaultPosition;
-const generateFood = require('./generateFood');
+//const generateFood = require('./generateFood');
+const food = require('./generateFood');
 // map behívás
 const basicMap = require('./map');
 
@@ -11,10 +12,6 @@ const basicMap = require('./map');
 // MOVE
 
 let currentMap = basicMap;
-//1. alma generalas
-generateFood(currentMap);
-// ez határozza meg a mozgast
-
 const mapReset = () => {
 for (let i = 0; i < currentMap.length; i++) {
   for (let j = 0; j < currentMap[i].length; j++) {
@@ -22,8 +19,9 @@ for (let i = 0; i < currentMap.length; i++) {
   }
 }
 }
-
+let counter = 0;
 while (true) { /* végtelenített while ciklus */
+  counter++;
   clear();
   mapReset();
   console.log(position[0].x, position[0].y);
@@ -33,9 +31,10 @@ while (true) { /* végtelenített while ciklus */
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = 'X';
   }
+  food(counter, currentMap);
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
-    let index = readlineSync.keyIn('', { limit: 'wasdq' });
+  let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
   // lépések
   switch (index) {
