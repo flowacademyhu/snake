@@ -15,7 +15,6 @@
   "bugs": {
     "url": "https://github.com/kosoczky/snake/issues"
   },
-<<<<<<< HEAD
   "homepage": "https://github.com/kosoczky/snake#readme",
   "dependencies": {
     "keypress": "^0.2.1",
@@ -23,7 +22,4 @@
     "table": "^4.0.3",
     "terminal-clear": "^0.1.0"
   }
-=======
-  "homepage": "https://github.com/kosoczky/snake#readme"
->>>>>>> development
 }
