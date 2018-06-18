@@ -28,7 +28,6 @@ const move = (position, dimension, increment) => {
 
 const up = (position) => {
   move(position, 'y', -1);
-  
 }
 
 const down = (position) => {
