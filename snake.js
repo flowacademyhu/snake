@@ -1,7 +1,7 @@
 let defaultPosition = [
-  { x: 5, y: 5, },
-  { x: 4, y: 5, },
-  { x: 3, y: 5, }
+  { x: 5, y: 5 },
+  { x: 4, y: 5 },
+  { x: 3, y: 5 }
 ]
 
 const clone = (position) => {
@@ -18,7 +18,7 @@ const move = (position, dimension, increment) => {
   let clonedPosition = clone(position);
   for (let i = 0; i < position.length; i++) {
     if (i === 0) {
-      position[0][dimension] += increment
+      position[0][dimension] += increment;
     } else {
       position[i].x = clonedPosition[i - 1].x;
       position[i].y = clonedPosition[i - 1].y;
@@ -28,6 +28,7 @@ const move = (position, dimension, increment) => {
 
 const up = (position) => {
   move(position, 'y', -1);
+  
 }
 
 const down = (position) => {
