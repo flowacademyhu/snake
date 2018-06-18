@@ -21,6 +21,7 @@
     "keypress": "^0.2.1",
     "readline-sync": "^1.4.9",
     "table": "^4.0.3",
-    "terminal-clear": "^0.1.0"
+    "terminal-clear": "^0.1.0",
+    "terminal-kit": "^1.17.11"
   }
 }
