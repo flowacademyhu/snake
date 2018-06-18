@@ -13,12 +13,12 @@ const basicMap = require('./map');
 
 let currentMap = basicMap;
 const mapReset = () => {
-for (let i = 0; i < currentMap.length; i++) {
-  for (let j = 0; j < currentMap[i].length; j++) {
-   currentMap[i][j] = ' ';
+  for (let i = 0; i < currentMap.length; i++) {
+    for (let j = 0; j < currentMap[i].length; j++) {
+      currentMap[i][j] = ' ';
+    }
   }
-}
-}
+};
 let counter = 0;
 while (true) { /* végtelenített while ciklus */
   counter++;
@@ -36,24 +36,24 @@ while (true) { /* végtelenített while ciklus */
   console.log(modifiedMap);
   let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
+  module.exports = modifiedMap;
   // lépések
   switch (index) {
     case 'w':
       snake.up(position);
       break;
     case 'a':
-    snake.left(position);
+      snake.left(position);
       break;
     case 's':
-    snake.down(position);
+      snake.down(position);
       break;
     case 'd':
-    snake.right(position);
+      snake.right(position);
       break;
   }
-  if (index === 'q') {
+  if (index === 'q' || position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
+    console.log('Game Over!')
     break;
   }
 }
-
-module.exports = modifiedMap;
