@@ -7,8 +7,7 @@ let position = snake.defaultPosition;
 const food = require('./generateFood');
 // map behívás
 const basicMap = require('./map');
-
-
+let counter = 0;
 // MOVE
 
 let currentMap = basicMap;
@@ -19,7 +18,6 @@ const mapReset = () => {
     }
   }
 };
-let counter = 0;
 while (true) { /* végtelenített while ciklus */
   counter++;
   clear();
