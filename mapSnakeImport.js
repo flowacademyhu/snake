@@ -16,11 +16,11 @@ generateFood(currentMap);
 // ez határozza meg a mozgast
 
 const mapReset = () => {
-for (let i = 0; i < currentMap.length; i++) {
-  for (let j = 0; j < currentMap[i].length; j++) {
-   currentMap[i][j] = ' ';
+  for (let i = 0; i < currentMap.length; i++) {
+    for (let j = 0; j < currentMap[i].length; j++) {
+      currentMap[i][j] = ' ';
+    }
   }
-}
 }
 
 while (true) { /* végtelenített while ciklus */
@@ -31,11 +31,17 @@ while (true) { /* végtelenített while ciklus */
   console.log(position[2].x, position[2].y);
   for (let positionIndex in position) {
     let coordinate = position[positionIndex];
-    currentMap[coordinate.y][coordinate.x] = 'X';
+    if (coordinate.y >= 0) {
+      currentMap[coordinate.y][coordinate.x] = 'X';
+    }
+    else {
+      console.log('Game over');
+    }
   }
+
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
-    let index = readlineSync.keyIn('', { limit: 'wasdq' });
+  let index = readlineSync.keyIn('', { limit: 'wasdq' });
 
   // lépések
   switch (index) {
@@ -43,18 +49,19 @@ while (true) { /* végtelenített while ciklus */
       snake.up(position);
       break;
     case 'a':
-    snake.left(position);
+      snake.left(position);
       break;
     case 's':
-    snake.down(position);
+      snake.down(position);
       break;
     case 'd':
-    snake.right(position);
+      snake.right(position);
       break;
   }
   if (index === 'q') {
     break;
   }
+
 }
 
 module.exports = modifiedMap;
