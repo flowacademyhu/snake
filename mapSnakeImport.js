@@ -31,13 +31,7 @@ while (true) { /* végtelenített while ciklus */
   console.log(position[2].x, position[2].y);
   for (let positionIndex in position) {
     let coordinate = position[positionIndex];
-    if (coordinate.y >= 0) {
-      currentMap[coordinate.y][coordinate.x] = 'X';
-    }
-    else {
-      console.log('Game over');
-      break;
-    }
+    currentMap[coordinate.y][coordinate.x] = 'X';
   }
 
   let modifiedMap = table(currentMap);
@@ -60,7 +54,7 @@ while (true) { /* végtelenített while ciklus */
       snake.right(position);
       break;
   }
-  if (index === 'q' || position[0].y < 0 || position[0].x < 0 || position[0].y > 15 || position[0].x > 15 ) {
+  if (index === 'q' || position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
     console.log('Game Over!')
     break;
   }
