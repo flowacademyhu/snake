@@ -55,15 +55,23 @@ let apple = 0;
 const main = () => {
   apple = 0;
   counter++;
-  clear();
+  
   mapReset();
   console.log(position[0].x, position[0].y);
   console.log(position[1].x, position[1].y);
   console.log(position[2].x, position[2].y);
   for (let positionIndex in position) {
+    if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
+      console.log('Game Over!');
+      
+
+      process.exit();
+    }
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = 'X';
+
   }
+  clear();
   collision(position);
   apple = food(counter, currentMap);
   if (apple === 1) {
