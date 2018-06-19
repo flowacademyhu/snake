@@ -3,6 +3,7 @@ const clear = require('terminal-clear');
 const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
 const growing = require('./growing');
+const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const basicMap = require('./map');
@@ -63,6 +64,7 @@ const main = () => {
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = 'X';
   }
+  collision(position);
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
@@ -75,6 +77,6 @@ const main = () => {
   setTimeout(() => {
     movement(direction);
     main();
-  }, 500);
+  }, 400);
 };
 main();
