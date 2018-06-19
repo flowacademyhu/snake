@@ -1,14 +1,16 @@
 const { table } = require('table');
-const readlineSync = require('readline-sync');
 const clear = require('terminal-clear');
 const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
 let position = snake.defaultPosition;
-// const generateFood = require('./generateFood');
 const food = require('./generateFood');
-// map behívás
 const basicMap = require('./map');
+
+// A kígyó alapértelmezett irányát adjuk meg.
+
 let direction = 'd';
+
+// Külső libbel (terminalKit) változtatjuk meg a directiont.
 
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
@@ -16,6 +18,8 @@ terminalKit.on('key', function (key) {
   direction = key;
   console.log(key);
 });
+
+// Mozgásirányok megadása
 
 const movement = (index) => {
   switch (index) {
@@ -61,8 +65,8 @@ const main = () => {
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
 
-  // let index = readlineSync.keyIn('', { limit: 'wasdq' });
-  // lépések
+  // setTimeout fuggveny adja, meg a kigyo segességét (beallitjuk, hogy milyen idokozonkent hívja meg a movement functiont.)
+
   setTimeout(() => {
     movement(direction);
     main();
