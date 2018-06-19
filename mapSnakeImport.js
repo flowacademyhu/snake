@@ -15,6 +15,10 @@ let direction = 'd';
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
+  if (position[0].y < 0 || position[0].x < 0 || position[0].x >= currentMap[0].length || position[0].y >= currentMap.length) {
+    console.log('Game Over!');
+    process.exit();
+  }
   direction = key;
   console.log(key);
 });
@@ -38,7 +42,7 @@ const movement = (index) => {
   }
 };
 
-// MOVE
+// Terkep újragenerálás (Hogy látszódjon rajta a kígyó.)
 
 let currentMap = basicMap;
 const mapReset = () => {
@@ -48,19 +52,32 @@ const mapReset = () => {
     }
   }
 };
+
+// Main function (Ide van minden behívva.)
+
 let counter = 0;
 const main = () => {
   counter++;
   clear();
   mapReset();
+
+  // Tesztkiírások
+
+  console.log('');
   console.log(position[0].x, position[0].y);
   console.log(position[1].x, position[1].y);
   console.log(position[2].x, position[2].y);
   console.log(direction);
+
+  // Kígyót teszi le
+
   for (let positionIndex in position) {
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = 'X';
   }
+
+  // Kajanegerátor + Score
+
   food(counter, currentMap);
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
