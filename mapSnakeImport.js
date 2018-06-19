@@ -2,6 +2,7 @@ const { table } = require('table');
 const clear = require('terminal-clear');
 const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
+const growing = require('./growing');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const basicMap = require('./map');
@@ -49,19 +50,23 @@ const mapReset = () => {
   }
 };
 let counter = 0;
+let apple = 0;
 const main = () => {
+  apple = 0;
   counter++;
   clear();
   mapReset();
   console.log(position[0].x, position[0].y);
   console.log(position[1].x, position[1].y);
   console.log(position[2].x, position[2].y);
-  console.log(direction);
   for (let positionIndex in position) {
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = 'X';
   }
-  food(counter, currentMap);
+  apple = food(counter, currentMap);
+  if (apple === 1) {
+    growing(position);
+  }
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
 
@@ -70,6 +75,6 @@ const main = () => {
   setTimeout(() => {
     movement(direction);
     main();
-  }, 100);
+  }, 500);
 };
 main();
