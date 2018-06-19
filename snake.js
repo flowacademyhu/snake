@@ -42,11 +42,6 @@ const right = (position) => {
   move(position, 'x', 1);
 }
 
-console.log(defaultPosition[0].y);
-console.log(defaultPosition[1].y);
-console.log(defaultPosition[2].y)
-
-
 module.exports = {
   defaultPosition: defaultPosition,
   up: up,

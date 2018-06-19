@@ -2,6 +2,7 @@ const { table } = require('table');
 const clear = require('terminal-clear');
 const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
+const growing = require('./growing');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const basicMap = require('./map');
@@ -56,7 +57,9 @@ const mapReset = () => {
 // Main function (Ide van minden behívva.)
 
 let counter = 0;
+let apple = 0;
 const main = () => {
+  apple = 0;
   counter++;
   clear();
   mapReset();
@@ -87,6 +90,6 @@ const main = () => {
   setTimeout(() => {
     movement(direction);
     main();
-  }, 100);
+  }, 500);
 };
 main();
