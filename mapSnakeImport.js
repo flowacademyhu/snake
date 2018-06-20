@@ -63,7 +63,7 @@ const main = () => {
   console.log(direction);
   apple = 0;
   counter++;
-  
+
   mapReset();
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
@@ -72,17 +72,32 @@ const main = () => {
       process.exit();
     }
     let coordinate = position[positionIndex];
-    currentMap[coordinate.y][coordinate.x] = '⚫';
-
-  }
+    
+    if (direction === 'w') {
+      currentMap[position[0].y][position[0].x] = '▲';
+    }
+    if (direction === 's') {
+      currentMap[position[0].y][position[0].x] = '▼';
+    }
+    if (direction === 'a') {
+      currentMap[position[0].y][position[0].x] = '◄';
+    }
+    if (direction === 'd') {
+      currentMap[position[0].y][position[0].x] = '►';
+    }
+    
+    currentMap[coordinate.y][coordinate.x] = '⬤';
+    // ⬤
   
+  }
+
   collision(position);
   clear();
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
   }
-  
+
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
