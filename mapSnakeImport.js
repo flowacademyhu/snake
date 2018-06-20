@@ -7,6 +7,7 @@ const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const map = require('./map');
+const logo = require('./intro');
 let basicMap = map.mapSnake;
 let config = map.config;
 
