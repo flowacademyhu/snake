@@ -17,8 +17,9 @@ let direction = 'd';
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
-  direction = key;
-  console.log(key);
+  if (!((key === 'd' && direction === 'a') || (key === 'a' && direction === 'd') || (key === 'w' && direction === 's') || (key === 's' && direction === 'w'))) {
+    direction = key;
+  }
 });
 
 // Mozgásirányok megadása
@@ -57,9 +58,6 @@ const main = () => {
   counter++;
   
   mapReset();
-  console.log(position[0].x, position[0].y);
-  console.log(position[1].x, position[1].y);
-  console.log(position[2].x, position[2].y);
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
