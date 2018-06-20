@@ -3,7 +3,7 @@ const terminalKit = require('terminal-kit').terminal;
 
 
 function question () {
-  terminalKit('Would you like a new game? Press UP, and Enter.');
+  terminalKit('Would you like to start a new game? Press UP, and Enter.');
 
   terminalKit.yesOrNo({ yes: ['y', 'ENTER'], no: ['n'] }, function (result) {
     if (result) {
