@@ -11,6 +11,7 @@ let basicMap = map.mapSnake;
 let config = map.config;
 const question = require('./question');
 
+
 // A kígyó alapértelmezett irányát adjuk meg.
 
 let direction = 'd';
