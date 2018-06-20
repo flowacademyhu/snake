@@ -10,6 +10,7 @@ const food = require('./generateFood');
 const map = require('./map');
 let basicMap = map.mapSnake;
 let config = map.config;
+const question = require('./question');
 
 // Welcome screen
 
@@ -21,10 +22,17 @@ let direction = 'd';
 
 // Külső libbel (terminalKit) változtatjuk meg a directiont.
 
+const notInverseDirection = (key) => {
+  return !((key === 'd' && direction === 'a') ||
+    (key === 'a' && direction === 'd') ||
+    (key === 'w' && direction === 's') ||
+    (key === 's' && direction === 'w'));
+};
+
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
-  if (!((key === 'd' && direction === 'a') || (key === 'a' && direction === 'd') || (key === 'w' && direction === 's') || (key === 's' && direction === 'w'))) {
+  if (notInverseDirection(key)) {
     direction = key;
   }
 });
@@ -64,19 +72,46 @@ const main = () => {
   apple = 0;
   counter++;
   mapReset();
+  /*
+  for (let i = 0; i < position.length; i++) {
+    if (i === 0) {
+      switch (direction) {
+        case 'w':
+          position.char = '║';
+          break;
+        case 's':
+          position.char = '║';
+          break;
+        case 'a':
+          position.char = '═';
+          break;
+        case 'd':
+          position.char = '═';
+          break;
+      }
+    } else {
+      let current = position[i];
+      let front = position[i + 1];
+      let back = position[i - 1];
+      if (current.y === back.y && current.y === front.y) {
+        position.char = '║';
+      }
+      if (current.x === back.x && current.x === front.x) {
+        position.char = '═';
+      }
+
+    }
+  }
+  */
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
+      question();
       process.exit();
     }
     let coordinate = position[positionIndex];
-    if ((direction === 'w') || (direction === 's')) {
-      currentMap[position[0].y][position[0].x] = '║';
-    }
-    if ((direction === 'a') || (direction === 'd')) {
-      currentMap[position[0].y][position[0].x] = '═';
-    }
-    currentMap[coordinate.y][coordinate.x] = '⬤';
+    currentMap[coordinate.y][coordinate.x] = coordinate.char;
+
   }
 
   collision(position);

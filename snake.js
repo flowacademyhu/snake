@@ -1,7 +1,7 @@
 let defaultPosition = [
-  { x: 5, y: 5 },
-  { x: 4, y: 5 },
-  { x: 3, y: 5 }
+  { x: 5, y: 5, char: '═' },
+  { x: 4, y: 5, char: '═' },
+  { x: 3, y: 5, char: '═' }
 ]
 
 const clone = (position) => {
@@ -10,6 +10,7 @@ const clone = (position) => {
     newPosition[i] = {};
     newPosition[i].x = position[i].x;
     newPosition[i].y = position[i].y;
+    newPosition[i].char = position.char;
   }
   return newPosition;
 }
