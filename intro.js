@@ -1,8 +1,3 @@
-const intro = () => {
-  console.log('szevasz baszdmeg! :)');
-
-};
-
 /* var ctx = require('axel');
 
 ctx.clear();
