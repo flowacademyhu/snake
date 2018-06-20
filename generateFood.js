@@ -7,7 +7,11 @@ const generateFood = (map) => {
   let sizeX = map[0].length;
   let i = Math.floor(Math.random() * sizeY);
   let j = Math.floor(Math.random() * sizeX);
+<<<<<<< HEAD
   if ((map[i][j] === '═') || (map[i][j] === '║') || (map[i][j] === '⬤')) {
+=======
+  if (map[i][j] === '⬤') {
+>>>>>>> development
     generateFood(map);
   } else {
     map[i][j] = '$';
@@ -25,16 +29,22 @@ const food = (counter, map) => {
   } else {
     // amikor felveszi a kígyó az almát:
     switch (map[applePositionI][applePositionJ]) {
-      case '═':
+      case '⬤':
         generateFood(map);
         score++;
+<<<<<<< HEAD
         apple = 1;
         return apple;
       case '║':
         generateFood(map);
         score++;
         apple = 1;
+=======
+        let apple = 1;
+        //console.log(score);
+>>>>>>> development
         return apple;
+        
         // amikor nem veszi fel az almát
       case ' ':
         map[applePositionI][applePositionJ] = '$';

@@ -78,8 +78,9 @@ const main = () => {
     }
     currentMap[coordinate.y][coordinate.x] = '⬤';
   }
-  clear();
+
   collision(position);
+  clear();
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
