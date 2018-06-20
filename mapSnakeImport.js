@@ -6,7 +6,9 @@ const growing = require('./growing');
 const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
-const basicMap = require('./map');
+const map = require('./map');
+let basicMap = map.mapSnake;
+let config = map.config;
 
 // A kígyó alapértelmezett irányát adjuk meg.
 
@@ -17,12 +19,9 @@ let direction = 'd';
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
-  if (position[0].y < 0 || position[0].x < 0 || position[0].x >= currentMap[0].length || position[0].y >= currentMap.length) {
-    console.log('Game Over!');
-    process.exit();
+  if (!((key === 'd' && direction === 'a') || (key === 'a' && direction === 'd') || (key === 'w' && direction === 's') || (key === 's' && direction === 'w'))) {
+    direction = key;
   }
-  direction = key;
-  console.log(key);
 });
 
 // Mozgásirányok megadása
@@ -65,21 +64,9 @@ const main = () => {
   counter++;
   
   mapReset();
-
-  // Tesztkiírások
-/*
-  console.log('');
-  console.log(position[0].x, position[0].y);
-  console.log(position[1].x, position[1].y);
-  console.log(position[2].x, position[2].y);
-  */
-
-  // Kígyót teszi le
-
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
-      
 
       process.exit();
     }
@@ -94,7 +81,8 @@ const main = () => {
   if (apple === 1) {
     growing(position);
   }
-  let modifiedMap = table(currentMap);
+  
+  let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
   // setTimeout fuggveny adja, meg a kigyo segességét (beallitjuk, hogy milyen idokozonkent hívja meg a movement functiont.)
