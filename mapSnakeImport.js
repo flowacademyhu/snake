@@ -6,7 +6,9 @@ const growing = require('./growing');
 const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
-const basicMap = require('./map');
+const map = require('./map');
+let basicMap = map.mapSnake;
+let config = map.config;
 
 // A kígyó alapértelmezett irányát adjuk meg.
 
@@ -61,12 +63,11 @@ const main = () => {
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
-      
 
       process.exit();
     }
     let coordinate = position[positionIndex];
-    currentMap[coordinate.y][coordinate.x] = 'X';
+    currentMap[coordinate.y][coordinate.x] = '═';
 
   }
   clear();
@@ -75,7 +76,7 @@ const main = () => {
   if (apple === 1) {
     growing(position);
   }
-  let modifiedMap = table(currentMap);
+  let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
   // setTimeout fuggveny adja, meg a kigyo segességét (beallitjuk, hogy milyen idokozonkent hívja meg a movement functiont.)
