@@ -3,6 +3,7 @@ const clear = require('terminal-clear');
 const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
 const growing = require('./growing');
+const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const basicMap = require('./map');
@@ -59,29 +60,40 @@ const mapReset = () => {
 let counter = 0;
 let apple = 0;
 const main = () => {
+  console.log(direction);
   apple = 0;
   counter++;
-  clear();
+  
   mapReset();
 
   // Tesztkiírások
-
+/*
   console.log('');
   console.log(position[0].x, position[0].y);
   console.log(position[1].x, position[1].y);
   console.log(position[2].x, position[2].y);
-  console.log(direction);
+  */
 
   // Kígyót teszi le
 
   for (let positionIndex in position) {
+    if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
+      console.log('Game Over!');
+      
+
+      process.exit();
+    }
     let coordinate = position[positionIndex];
-    currentMap[coordinate.y][coordinate.x] = 'X';
+    currentMap[coordinate.y][coordinate.x] = '⚫';
+
   }
-
-  // Kajanegerátor + Score
-
-  food(counter, currentMap);
+  clear();
+  console.log(direction);
+  collision(position);
+  apple = food(counter, currentMap);
+  if (apple === 1) {
+    growing(position);
+  }
   let modifiedMap = table(currentMap);
   console.log(modifiedMap);
 
@@ -90,6 +102,6 @@ const main = () => {
   setTimeout(() => {
     movement(direction);
     main();
-  }, 500);
+  }, 100);
 };
 main();
