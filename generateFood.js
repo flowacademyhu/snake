@@ -9,14 +9,14 @@ const generateFood = (map) => {
   if (map[i][j] === 'X') {
     generateFood(map);
   } else {
-    map[i][j] = 'o';
+    map[i][j] = '$';
     applePositionI = i;
     applePositionJ = j;
   }
 };
 
 const food = (counter, map) => {
-  console.log('Score: ' + score);
+  console.log('Money earned: $' + score);
   // első kör, az alma generálás fixen lefut
   if (counter === 1) {
     generateFood(map);
@@ -31,7 +31,7 @@ const food = (counter, map) => {
         return apple;
         // amikor nem veszi fel az almát
       case ' ':
-        map[applePositionI][applePositionJ] = 'o';
+        map[applePositionI][applePositionJ] = '$';
         break;
     }
   }
