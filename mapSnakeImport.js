@@ -74,9 +74,9 @@ const main = () => {
     currentMap[coordinate.y][coordinate.x] = '⚫';
 
   }
-  clear();
-  console.log(direction);
+  
   collision(position);
+  clear();
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
@@ -90,6 +90,6 @@ const main = () => {
   setTimeout(() => {
     movement(direction);
     main();
-  }, 100);
+  }, 80);
 };
 main();
