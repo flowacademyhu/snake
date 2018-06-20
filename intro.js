@@ -1,4 +1,9 @@
-var ctx = require('axel');
+const intro = () => {
+  console.log('szevasz baszdmeg! :)');
+
+};
+
+/* var ctx = require('axel');
 
 ctx.clear();
  
@@ -19,3 +24,5 @@ ctx.bg(0,0,255);
 ctx.box(12,7,8,4);
  
 ctx.cursor.restore();
+*/
+module.exports = intro;
