@@ -28,7 +28,9 @@ const food = (counter, map) => {
         generateFood(map);
         score++;
         let apple = 1;
+        console.log(score);
         return apple;
+        
         // amikor nem veszi fel az almát
       case ' ':
         map[applePositionI][applePositionJ] = '$';
