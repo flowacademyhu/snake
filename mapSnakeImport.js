@@ -10,6 +10,7 @@ const food = require('./generateFood');
 const map = require('./map');
 let basicMap = map.mapSnake;
 let config = map.config;
+const question = require('./question');
 
 // Welcome screen
 
@@ -105,6 +106,7 @@ const main = () => {
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
+      question();
       process.exit();
     }
     let coordinate = position[positionIndex];
