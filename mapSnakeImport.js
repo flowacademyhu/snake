@@ -70,17 +70,19 @@ const main = () => {
       process.exit();
     }
     let coordinate = position[positionIndex];
-    currentMap[coordinate.y][coordinate.x] = '═';
+    // currentMap[position[0].y][position[0].x] = '☻';  the head character
+    currentMap[coordinate.y][coordinate.x] = '⬤';
 
   }
   
   collision(position);
+  clear();
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
   }
   
-  clear();
+  
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
