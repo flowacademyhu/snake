@@ -8,7 +8,6 @@ const collision = require('./collision');
 let position = snake.defaultPosition;
 const food = require('./generateFood');
 const map = require('./map');
-const logo = require('./intro');
 let basicMap = map.mapSnake;
 let config = map.config;
 const question = require('./question');
@@ -57,7 +56,7 @@ const movement = (index) => {
   }
 };
 
-// Terkep újragenerálás (Hogy látszódjon rajta a kígyó.)
+// MOVE
 
 let currentMap = basicMap;
 const mapReset = () => {
@@ -67,13 +66,9 @@ const mapReset = () => {
     }
   }
 };
-
-// Main function (Ide van minden behívva.)
-
 let counter = 0;
 let apple = 0;
 const main = () => {
-  console.log(direction);
   apple = 0;
   counter++;
   mapReset();
@@ -115,23 +110,6 @@ const main = () => {
       process.exit();
     }
     let coordinate = position[positionIndex];
-    
-    if (direction === 'w') {
-      currentMap[position[0].y][position[0].x] = '▲';
-    }
-    if (direction === 's') {
-      currentMap[position[0].y][position[0].x] = '▼';
-    }
-    if (direction === 'a') {
-      currentMap[position[0].y][position[0].x] = '◄';
-    }
-    if (direction === 'd') {
-      currentMap[position[0].y][position[0].x] = '►';
-    }
-    
-    currentMap[coordinate.y][coordinate.x] = '⬤';
-    // ⬤
-  
     currentMap[coordinate.y][coordinate.x] = coordinate.char;
 
   }
@@ -142,7 +120,6 @@ const main = () => {
   if (apple === 1) {
     growing(position);
   }
-
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
