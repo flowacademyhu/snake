@@ -10,7 +10,7 @@ const generateFood = (map) => {
   if ((map[i][j] === '═') || (map[i][j] === '║')) {
     generateFood(map);
   } else {
-    map[i][j] = '💵';
+    map[i][j] = '$';
     applePositionI = i;
     applePositionJ = j;
   }
@@ -34,10 +34,10 @@ const food = (counter, map) => {
         generateFood(map);
         score++;
         apple = 1;
-        return apple;        
+        return apple;
       // if the apple was not picked up, this regenerates it
       case ' ':
-        map[applePositionI][applePositionJ] = '💵';
+        map[applePositionI][applePositionJ] = '$';
         break;
     }
   }
