@@ -34,7 +34,7 @@ const food = (counter, map) => {
         generateFood(map);
         score++;
         apple = 1;
-        return apple;        
+        return apple;
       // if the apple was not picked up, this regenerates it
       case ' ':
         map[applePositionI][applePositionJ] = '$';
