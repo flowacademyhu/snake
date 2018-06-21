@@ -16,5 +16,4 @@ function question () {
   });
 }
 
-question();
 module.exports = question;

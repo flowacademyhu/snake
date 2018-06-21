@@ -17,13 +17,13 @@ const generateFood = (map) => {
 };
 
 const food = (counter, map) => {
-  console.log('Money earned:$' + score);
-  // első kör, az alma generálás fixen lefut
+  console.log('Money earned: $' + score);
+  // first round, first apple generates
   if (counter === 1) {
     generateFood(map);
-  // az összes többi kör
+  // after first round, this runs
   } else {
-    // amikor felveszi a kígyó az almát:
+    // every other rounds:
     switch (map[applePositionI][applePositionJ]) {
       case '═':
         generateFood(map);
@@ -34,8 +34,8 @@ const food = (counter, map) => {
         generateFood(map);
         score++;
         apple = 1;
-        return apple;
-        // amikor nem veszi fel az almát
+        return apple;        
+      // if the apple was not picked up, this regenerates it
       case ' ':
         map[applePositionI][applePositionJ] = '💵';
         break;
