@@ -4,7 +4,7 @@ const terminalKit = require('terminal-kit').terminal;
 var moved = 0;
 
 function moveRedraw() {
-  //buffer.drawChars() ;
+  // buffer.drawChars() ;
   buffer.draw();
   buffer.x++;
 
