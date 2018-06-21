@@ -15,11 +15,11 @@ let config = map.config;
 
 readlineSync.keyInPause('Welcome in Snake! Please press any key to start the game!');
 
-// A kígyó alapértelmezett irányát adjuk meg.
+// Direction sets the snake's moving direction
 
 let direction = 'd';
 
-// Külső libbel (terminalKit) változtatjuk meg a directiont.
+// The terminalKit changes the direction
 
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
@@ -29,7 +29,7 @@ terminalKit.on('key', function (key) {
   }
 });
 
-// Mozgásirányok megadása
+// Operates moving directions
 
 const movement = (index) => {
   switch (index) {
@@ -88,8 +88,7 @@ const main = () => {
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
-  // setTimeout fuggveny adja, meg a kigyo segességét (beallitjuk, hogy milyen idokozonkent hívja meg a movement functiont.)
-
+  // The setTimeout function determines the speed
   setTimeout(() => {
     movement(direction);
     main();
