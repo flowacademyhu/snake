@@ -1,12 +1,17 @@
 let applePositionI = 0;
 let applePositionJ = 0;
 let score = 0;
+let apple = 0;
 const generateFood = (map) => {
   let sizeY = map.length;
   let sizeX = map[0].length;
   let i = Math.floor(Math.random() * sizeY);
   let j = Math.floor(Math.random() * sizeX);
+<<<<<<< HEAD
   if (map[i][j] === '⬤') {
+=======
+  if ((map[i][j] === '═') || (map[i][j] === '║')) {
+>>>>>>> development
     generateFood(map);
   } else {
     map[i][j] = '💵';
@@ -27,8 +32,14 @@ const food = (counter, map) => {
       case '⬤':
         generateFood(map);
         score++;
-        let apple = 1;
+        apple = 1;
         return apple;
+      case '║':
+        generateFood(map);
+        score++;
+        apple = 1;
+        return apple;
+        
         // amikor nem veszi fel az almát
       case ' ':
         map[applePositionI][applePositionJ] = '💵';

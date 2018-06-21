@@ -1,1 +1,2 @@
-This is the ReadMe for SNAKE!
+Snake project:
+This program is made by Adam Kosoczky, Eva Dudas and Gabor Thury.

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 var ctx = require('axel');
 const logo = () => {
     let logo = ' \n' +
@@ -14,10 +15,14 @@ const logo = () => {
         '                                                      ';
     return logo;
 };
+=======
+/* var ctx = require('axel');
+>>>>>>> development
 
 ctx.clear();
 
 // Red box
+<<<<<<< HEAD
 //bal margotol valo tavolsag
 //fentrol mennyire legyen lent
 //vizszintesen mennyit menjen (duplazni kell), lefele mennyit menjen
@@ -98,3 +103,23 @@ ctx.box(24, 11, 2, 1);// 3
 
 ctx.cursor.restore();
 
+=======
+ctx.bg(255,0,0);
+ctx.box(2,2,8,4);
+ 
+// Yellow box
+ctx.bg(255,255,0);
+ctx.box(12,2,8,4);
+ 
+// Green box
+ctx.bg(0,255,0);
+ctx.box(2,7,8,4);
+ 
+// Blue box
+ctx.bg(0,0,255);
+ctx.box(12,7,8,4);
+ 
+ctx.cursor.restore();
+*/
+module.exports = intro;
+>>>>>>> development
