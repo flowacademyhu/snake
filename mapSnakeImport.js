@@ -84,11 +84,33 @@ const main = () => {
         current.char = '═';
       }
     } else if (i > 0 && i < position.length - 1) {
+      // case 1
       if (current.y === back.y && current.y === front.y) {
         current.char = '═';
       }
+      // case 2
       if (current.x === back.x && current.x === front.x) {
         current.char = '║';
+      }
+      // case 3
+      if (((current.x === front.x && current.y > front.y) && (current.x > back.x && current.y === back.y)) ||
+      ((current.x > front.x && current.y === front.y) && (current.x === back.x && current.y > back.y))) {
+        current.char = '╝';
+      }
+      // case 4
+      if (((current.x === front.x && current.y < front.y) && (current.x > back.x && current.y === back.y)) ||
+      ((current.x > front.x && current.y === front.y) && (current.x === back.x && current.y < back.y))) {
+        current.char = '╗';
+      }
+      // case 5
+      if (((current.x === front.x && current.y > front.y) && (current.x < back.x && current.y === back.y)) ||
+      ((current.x < front.x && current.y === front.y) && (current.x === back.x && current.y > back.y))) {
+        current.char = '╚';
+      }
+      // case 6
+      if (((current.x === front.x && current.y < front.y) && (current.x < back.x && current.y === back.y)) ||
+      ((current.x < front.x && current.y === front.y) && (current.x === back.x && current.y < back.y))) {
+        current.char = '╔';
       }
     } else {
       current.char = front.char;
