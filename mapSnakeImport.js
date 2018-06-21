@@ -10,16 +10,17 @@ const food = require('./generateFood');
 const map = require('./map');
 let basicMap = map.mapSnake;
 let config = map.config;
+const question = require('./question');
 
 // Welcome screen
 
 readlineSync.keyInPause('Welcome in Snake! Please press any key to start the game!');
 
-// A kígyó alapértelmezett irányát adjuk meg.
+// Direction sets the snake's moving direction
 
 let direction = 'd';
 
-// Külső libbel (terminalKit) változtatjuk meg a directiont.
+// The terminalKit changes the direction
 
 const notInverseDirection = (key) => {
   return !((key === 'd' && direction === 'a') ||
@@ -36,7 +37,7 @@ terminalKit.on('key', function (key) {
   }
 });
 
-// Mozgásirányok megadása
+// Operates moving directions
 
 const movement = (index) => {
   switch (index) {
@@ -105,6 +106,7 @@ const main = () => {
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
+      question();
       process.exit();
     }
     let coordinate = position[positionIndex];
@@ -121,8 +123,7 @@ const main = () => {
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
-  // setTimeout fuggveny adja, meg a kigyo segességét (beallitjuk, hogy milyen idokozonkent hívja meg a movement functiont.)
-
+  // The setTimeout function determines the speed
   setTimeout(() => {
     movement(direction);
     main();
