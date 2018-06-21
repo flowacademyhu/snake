@@ -115,10 +115,24 @@ const main = () => {
         current.char = '╔';
       }
     } else {
-      current.char = front.char;
+      if ((current.x === front.x) && current.y !== front.y) {
+        current.char = '║';
+      }
+      if ((current.x !== front.x) && current.y === front.y) {
+        current.char = '═';
+      }
     }
   }
-
+  
+/*  for (let i = position.length; i > 0 ; i--) {
+    let tail = position[0];
+    let body = position[i - 1];
+    if (body.char === '║' || body.char === '═') {
+      tail.char = body.char;
+      break;
+    }
+  }
+*/
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
