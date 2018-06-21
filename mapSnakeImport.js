@@ -11,6 +11,8 @@ const map = require('./map');
 let basicMap = map.mapSnake;
 let config = map.config;
 const question = require('./question');
+let counter2 = 0;
+let time = 0;
 
 // Welcome screen
 
@@ -133,14 +135,45 @@ const main = () => {
   apple = food(counter, currentMap);
   if (apple === 1) {
     growing(position);
+    counter2++;
   }
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
 
   // The setTimeout function determines the speed
+  /*
+  if (food.counter < 3) {
+    setTimeout(() => {
+      movement(direction);
+      main();
+    }, 500);
+  } else if (food.counter >= 3) {
+    setTimeout(() => {
+      movement(direction);
+      main();
+    }, 100);
+  }
+ 
   setTimeout(() => {
     movement(direction);
     main();
   }, 300);
+*/
+
+  setTimeout(() => {
+    if (counter2 < 3) {
+      time = 400;
+    } else if (counter2 >= 3 && counter2 < 6) {
+      time = 300;
+    } else if (counter2 >= 6 && counter2 < 9) {
+      time = 200;
+    } else if (counter2 >= 9 && counter2 < 12) {
+      time = 100;
+    } else {
+      time = 50;
+    }
+    movement(direction);
+    main();
+  }, time);
 };
 main();
