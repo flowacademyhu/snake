@@ -7,11 +7,7 @@ const generateFood = (map) => {
   let sizeX = map[0].length;
   let i = Math.floor(Math.random() * sizeY);
   let j = Math.floor(Math.random() * sizeX);
-<<<<<<< HEAD
-  if (map[i][j] === '⬤') {
-=======
   if ((map[i][j] === '═') || (map[i][j] === '║')) {
->>>>>>> development
     generateFood(map);
   } else {
     map[i][j] = '💵';
