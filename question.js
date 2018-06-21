@@ -1,15 +1,16 @@
 const terminalKit = require('terminal-kit').terminal;
-function question () {
-  terminalKit('Would you like to start a new game? Press UP, and Enter.');
-  terminalKit.yesOrNo({ yes: ['y', 'ENTER'], no: ['n'] }, function (result) {
-    if (result) {
-      terminalKit.green('Yes, new game begins.');
-      question();
-    } else {
-      terminalKit.red('Thank You for playing. Bye.');
-      process.exit();
-    }
-  });
-}
+const readlineSync = require('readline-sync');
+const newGame = require('./mapSnakeImport');
+let playagain;
+
+const question = () => {
+  terminalKit('Would you like to start a new game? y/n.');
+  playagain = readlineSync.keyIn();
+  if (playagain === 'y') {
+    return true;
+  } else {
+    return false;
+  } /* 'Thank you for playing!' */
+};
 
 module.exports = question;

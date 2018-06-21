@@ -1,5 +1,6 @@
 const question = require('./question');
 const ctx = require('axel');
+const terminalKit = require('terminal-kit').terminal;
 
 /*
 let logo = ' \n' +
@@ -115,6 +116,7 @@ ctx.text(10, 2, ' \n' +
 // Snake
 
 ctx.bg(224, 255, 255);
+ctx.fg(10, 0, 0);
 ctx.text(20, 3, '  /$$$$$$                      /$$                 \n');
 ctx.text(20, 4, ' /$$__  $$                    | $$                 \n');
 ctx.text(20, 5, '| $$  \\__/ /$$$$$$$   /$$$$$$ | $$   /$$  /$$$$$$  \n');
