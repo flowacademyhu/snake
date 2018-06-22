@@ -5,22 +5,16 @@ const snake = require('./snake');
 const terminalKit = require('terminal-kit').terminal;
 const growing = require('./growing');
 const collision = require('./collision');
-let position = snake.defaultPosition;
 const food = require('./generateFood');
 const map = require('./map');
 let basicMap = map.mapSnake;
 let config = map.config;
 const question = require('./question');
-let counter2 = 0;
-let time = 0;
 const logo = require('./intro');
+let theSnake = snake.cloneSnake(snake.defaultSnake);
 
 // Welcome screen
-console.log(logo)
-
-// Direction sets the snake's moving direction
-
-let direction = 'd';
+console.log(logo);
 
 // The terminalKit changes the direction
 const valid = (key) => {
@@ -32,17 +26,17 @@ const valid = (key) => {
 };
 
 const notInverseDirection = (key) => {
-  return !((key === 'd' && direction === 'a') ||
-    (key === 'a' && direction === 'd') ||
-    (key === 'w' && direction === 's') ||
-    (key === 's' && direction === 'w'));
+  return !((key === 'd' && theSnake.direction === 'a') ||
+    (key === 'a' && theSnake.direction === 'd') ||
+    (key === 'w' && theSnake.direction === 's') ||
+    (key === 's' && theSnake.direction === 'w'));
 };
 
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
   if (notInverseDirection(key) && valid(key)) {
-    direction = key;
+    theSnake.direction = key;
   }
 });
 
@@ -51,16 +45,16 @@ terminalKit.on('key', function (key) {
 const movement = (index) => {
   switch (index) {
     case 'w':
-      snake.up(position);
+      snake.up(theSnake.position);
       break;
     case 'a':
-      snake.left(position);
+      snake.left(theSnake.position);
       break;
     case 's':
-      snake.down(position);
+      snake.down(theSnake.position);
       break;
     case 'd':
-      snake.right(position);
+      snake.right(theSnake.position);
       break;
   }
 };
@@ -78,20 +72,20 @@ const main = () => {
   apple = 0;
   counter++;
   mapReset();
-  for (let i = 0; i < position.length; i++) {
-    let current = position[i];
-    let front = position[i - 1];
-    let back = position[i + 1];
+  for (let i = 0; i < theSnake.position.length; i++) {
+    let current = theSnake.position[i];
+    let front = theSnake.position[i - 1];
+    let back = theSnake.position[i + 1];
     // This is the snake's head
     if (i === 0) {
-      if ((direction === 'w') || (direction === 's')) {
+      if ((theSnake.direction === 'w') || (theSnake.direction === 's')) {
         current.char = '║';
       }
-      if ((direction === 'a') || (direction === 'd')) {
+      if ((theSnake.direction === 'a') || (theSnake.direction === 'd')) {
         current.char = '═';
       }
       // This is the snake's body between the head and the tail
-    } else if (i > 0 && i < position.length - 1) {
+    } else if (i > 0 && i < theSnake.position.length - 1) {
       // The body can be built up from 6 characters, these are the cases
       // In every case, the program ispects the coordinates of the before and after body part
       // case 1
@@ -132,10 +126,14 @@ const main = () => {
       }
     }
   }
-  for (let positionIndex in position) {
-    if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
+  for (let index in theSnake.position) {
+    if (theSnake.position[0].y < 0 || theSnake.position[0].x < 0 || theSnake.position[0].y >= currentMap.length || theSnake.position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
       if (question()) {
+        theSnake = snake.cloneSnake(snake.defaultSnake);
+        counter = 0;
+        apple = 0;
+        terminalKit.grabInput();
         main();
         // ide meg az kellene, hogy a kigyo ujra legyen generalva kozepre!!!!!!!
       } else {
@@ -143,34 +141,34 @@ const main = () => {
         process.exit();
       }
     }
-    let coordinate = position[positionIndex];
+    let coordinate = theSnake.position[index];
     currentMap[coordinate.y][coordinate.x] = coordinate.char;
   }
 
-  collision(position);
+  collision(theSnake.position);
   clear();
   apple = food(counter, currentMap);
   if (apple === 1) {
-    growing(position);
-    counter2++;
+    growing(theSnake.position);
+    theSnake.counter++;
   }
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
   setTimeout(() => {
-    if (counter2 < 3) {
-      time = 400;
-    } else if (counter2 >= 3 && counter2 < 6) {
-      time = 300;
-    } else if (counter2 >= 6 && counter2 < 9) {
-      time = 200;
-    } else if (counter2 >= 9 && counter2 < 12) {
-      time = 100;
+    if (theSnake.counter < 3) {
+      theSnake.time = 400;
+    } else if (theSnake.counter >= 3 && theSnake.counter < 6) {
+      theSnake.time = 300;
+    } else if (theSnake.counter >= 6 && theSnake.counter < 9) {
+      theSnake.time = 200;
+    } else if (theSnake.counter >= 9 && theSnake.counter < 12) {
+      theSnake.time = 100;
     } else {
-      time = 50;
+      theSnake.time = 50;
     }
-    movement(direction);
+    movement(theSnake.direction);
     main();
-  }, time);
+  }, theSnake.time);
 };
 main();
 

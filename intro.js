@@ -1,4 +1,3 @@
-const question = require('./question');
 const ctx = require('axel');
 const readlineSync = require('readline-sync');
 

@@ -1,22 +1,37 @@
-let defaultPosition = [
-  { x: 5, y: 5, char: '═' },
-  { x: 4, y: 5, char: '═' },
-  { x: 3, y: 5, char: '═' }
-]
+const defaultSnake = {
+  position: [
+    { x: 5, y: 5, char: '═' },
+    { x: 4, y: 5, char: '═' },
+    { x: 3, y: 5, char: '═' }
+  ],
+  direction: 'd',
+  counter: 0,
+  time: 0
+};
 
-const clone = (position) => {
+const clonePosition = (position) => {
   let newPosition = [];
   for (let i = 0; i < position.length; i++) {
     newPosition[i] = {};
     newPosition[i].x = position[i].x;
     newPosition[i].y = position[i].y;
-    newPosition[i].char = position.char;
+    newPosition[i].char = position[i].char;
   }
   return newPosition;
+};
+
+const cloneSnake = (snake) => {
+  let newSnake = {
+    position: clonePosition(snake.position),
+    direction: snake.direction,
+    counter: snake.counter,
+    time: snake.time
+  }
+  return newSnake;
 }
 
 const move = (position, dimension, increment) => {
-  let clonedPosition = clone(position);
+  let clonedPosition = clonePosition(position);
   for (let i = 0; i < position.length; i++) {
     if (i === 0) {
       position[0][dimension] += increment;
@@ -44,9 +59,10 @@ const right = (position) => {
 }
 
 module.exports = {
-  defaultPosition: defaultPosition,
+  defaultSnake: defaultSnake,
   up: up,
   down: down,
   left: left,
-  right: right
+  right: right,
+  cloneSnake: cloneSnake
 };
