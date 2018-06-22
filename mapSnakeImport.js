@@ -16,7 +16,7 @@ let time = 0;
 
 // Welcome screen
 
-readlineSync.keyInPause('Welcome in Snake! Please press any key to start the game!');
+readlineSync.keyInPause('Welcome to Snake! Please press any key to start the game!');
 
 // Direction sets the snake's moving direction
 
@@ -115,19 +115,37 @@ const main = () => {
         current.char = '╔';
       }
     } else {
-      current.char = front.char;
+      if ((current.x === front.x) && current.y !== front.y) {
+        current.char = '║';
+      }
+      if ((current.x !== front.x) && current.y === front.y) {
+        current.char = '═';
+      }
     }
   }
-
+  
+/*  for (let i = position.length; i > 0 ; i--) {
+    let tail = position[0];
+    let body = position[i - 1];
+    if (body.char === '║' || body.char === '═') {
+      tail.char = body.char;
+      break;
+    }
+  }
+*/
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
-      question();
-      process.exit();
+      if (question()) {
+        main();
+        //ide meg az kellene, hogy a kigyo ujra legyen generalva kozepre!!!!!!!
+      } else {
+        console.log('Thank you for playing!');
+        process.exit();
+      }
     }
     let coordinate = position[positionIndex];
     currentMap[coordinate.y][coordinate.x] = coordinate.char;
-
   }
 
   collision(position);
@@ -177,3 +195,5 @@ const main = () => {
   }, time);
 };
 main();
+
+module.exports = main;
