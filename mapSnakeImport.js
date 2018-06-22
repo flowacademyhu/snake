@@ -164,9 +164,9 @@ const main = () => {
     } else if (counter2 >= 6 && counter2 < 9) {
       time = 200;
     } else if (counter2 >= 9 && counter2 < 12) {
-      time = 100;
+      time = 150;
     } else {
-      time = 50;
+      time = 100;
     }
     movement(direction);
     main();
