@@ -13,10 +13,10 @@ let config = map.config;
 const question = require('./question');
 let counter2 = 0;
 let time = 0;
+const logo = require('./intro');
 
 // Welcome screen
-
-readlineSync.keyInPause('Welcome to Snake! Please press any key to start the game!');
+console.log(logo)
 
 // Direction sets the snake's moving direction
 

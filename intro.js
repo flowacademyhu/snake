@@ -1,6 +1,6 @@
 const question = require('./question');
 const ctx = require('axel');
-const terminalKit = require('terminal-kit').terminal;
+const readlineSync = require('readline-sync');
 
 const logo = () => {
   ctx.clear();
@@ -98,9 +98,9 @@ const logo = () => {
   ctx.text(20, 9, '|  $$$$$$/| $$  | $$|  $$$$$$$| $$ \\  $$|  $$$$$$$ \n');
   ctx.text(20, 10, ' \\______/ |__/  |__/ \\_______/|__/  \\__/ \\_______/ \n');
 
-  ctx.text(20, 30, '');
+  ctx.text(10, 30, '');
 
-  question();
+  readlineSync.keyInPause('Welcome to Snake! Please press any key to start the game!');
 
   ctx.cursor.restore();
 };
