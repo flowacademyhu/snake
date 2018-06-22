@@ -1,7 +1,7 @@
 const { table } = require('table');
 let output;
 
-let size = 18;
+let size = 16;
 let map = [];
 
 const mapSnakeGenerate = () => {
