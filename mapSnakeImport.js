@@ -23,6 +23,13 @@ readlineSync.keyInPause('Welcome to Snake! Please press any key to start the gam
 let direction = 'd';
 
 // The terminalKit changes the direction
+const valid = (key) => {
+  if ((key === 'w') || (key === 'a') || (key === 's') || (key === 'd')) {
+    return true;
+  } else {
+    return false;
+  }
+};
 
 const notInverseDirection = (key) => {
   return !((key === 'd' && direction === 'a') ||
@@ -34,7 +41,7 @@ const notInverseDirection = (key) => {
 terminalKit.grabInput();
 terminalKit.on('key', function (key) {
   if (key === 'q') { process.exit(); }
-  if (notInverseDirection(key)) {
+  if (notInverseDirection(key) && valid(key)) {
     direction = key;
   }
 });
@@ -57,9 +64,6 @@ const movement = (index) => {
       break;
   }
 };
-
-// MOVE
-
 let currentMap = basicMap;
 const mapReset = () => {
   for (let i = 0; i < currentMap.length; i++) {
@@ -78,6 +82,7 @@ const main = () => {
     let current = position[i];
     let front = position[i - 1];
     let back = position[i + 1];
+    // This is the snake's head
     if (i === 0) {
       if ((direction === 'w') || (direction === 's')) {
         current.char = '║';
@@ -85,7 +90,10 @@ const main = () => {
       if ((direction === 'a') || (direction === 'd')) {
         current.char = '═';
       }
+      // This is the snake's body between the head and the tail
     } else if (i > 0 && i < position.length - 1) {
+      // The body can be built up from 6 characters, these are the cases
+      // In every case, the program ispects the coordinates of the before and after body part
       // case 1
       if (current.y === back.y && current.y === front.y) {
         current.char = '═';
@@ -114,6 +122,7 @@ const main = () => {
       ((current.x < front.x && current.y === front.y) && (current.x === back.x && current.y < back.y))) {
         current.char = '╔';
       }
+      // This is the snake's tail
     } else {
       if ((current.x === front.x) && current.y !== front.y) {
         current.char = '║';
@@ -123,22 +132,12 @@ const main = () => {
       }
     }
   }
-  
-/*  for (let i = position.length; i > 0 ; i--) {
-    let tail = position[0];
-    let body = position[i - 1];
-    if (body.char === '║' || body.char === '═') {
-      tail.char = body.char;
-      break;
-    }
-  }
-*/
   for (let positionIndex in position) {
     if (position[0].y < 0 || position[0].x < 0 || position[0].y >= currentMap.length || position[0].x >= currentMap[0].length) {
       console.log('Game Over!');
       if (question()) {
         main();
-        //ide meg az kellene, hogy a kigyo ujra legyen generalva kozepre!!!!!!!
+        // ide meg az kellene, hogy a kigyo ujra legyen generalva kozepre!!!!!!!
       } else {
         console.log('Thank you for playing!');
         process.exit();
@@ -157,27 +156,6 @@ const main = () => {
   }
   let modifiedMap = table(currentMap, config);
   console.log(modifiedMap);
-
-  // The setTimeout function determines the speed
-  /*
-  if (food.counter < 3) {
-    setTimeout(() => {
-      movement(direction);
-      main();
-    }, 500);
-  } else if (food.counter >= 3) {
-    setTimeout(() => {
-      movement(direction);
-      main();
-    }, 100);
-  }
- 
-  setTimeout(() => {
-    movement(direction);
-    main();
-  }, 300);
-*/
-
   setTimeout(() => {
     if (counter2 < 3) {
       time = 400;
